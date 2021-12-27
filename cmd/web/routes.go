@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/GolfGrab/gudemy/pkg/config"
-	"github.com/GolfGrab/gudemy/pkg/handlers"
+	"github.com/GolfGrab/GoGetGRoom/pkg/config"
+	"github.com/GolfGrab/GoGetGRoom/pkg/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )

@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/GolfGrab/gudemy/pkg/config"
-	"github.com/GolfGrab/gudemy/pkg/models"
-	"github.com/GolfGrab/gudemy/pkg/render"
+	"github.com/GolfGrab/GoGetGRoom/pkg/config"
+	"github.com/GolfGrab/GoGetGRoom/pkg/models"
+	"github.com/GolfGrab/GoGetGRoom/pkg/render"
 )
 
 //Repo is the repository for the handlers

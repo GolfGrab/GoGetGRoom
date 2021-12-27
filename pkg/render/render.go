@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/GolfGrab/gudemy/pkg/config"
-	"github.com/GolfGrab/gudemy/pkg/models"
+	"github.com/GolfGrab/GoGetGRoom/pkg/config"
+	"github.com/GolfGrab/GoGetGRoom/pkg/models"
 )
 
 var function = template.FuncMap{}
