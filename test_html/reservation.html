@@ -49,10 +49,6 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-                <!-- <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> -->
             </div>
         </div>
     </nav>
@@ -204,42 +200,6 @@
             todayHighlight: true,
             todayBtn: true
         });
-
-        function alertSuccess(msg) {
-            Swal.fire({
-                title: 'Success!',
-                text: msg,
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-        }
-
-        function alertError(msg) {
-            Swal.fire({
-                title: 'Error!',
-                text: msg,
-                icon: 'error',
-                confirmButtonText: 'Sad'
-            })
-        }
-
-        function alertWorning(msg) {
-            Swal.fire({
-                title: 'Worning!',
-                text: msg,
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            })
-        }
-
-        function alertTemplate(title, text, icon, confirmButtonText) {
-            Swal.fire({
-                title: title,
-                text: text,
-                icon: icon,
-                confirmButtonText: confirmButtonText
-            })
-        }
 
         function Prompt() {
             let toast = function (title = "", icon = "success", position = "top-end") {

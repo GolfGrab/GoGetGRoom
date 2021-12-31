@@ -28,7 +28,7 @@ func NewHandlers(r *Repository) {
 	Repo = r
 }
 
-// Home is the home page handler
+// Home is the home page handler render the home page
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIp := r.RemoteAddr
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIp)
@@ -36,7 +36,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// About is the about page handler
+// About is the about page handler render the about page
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	// perform some logic
 	stringMap := make(map[string]string)
@@ -49,5 +49,29 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
+}
 
+//Contact is the contact page handler render the contact page
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+}
+
+// Reservation is the make-reservation page handler render the make-reservation page with the form
+func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+}
+
+// Pink is the pink page handler render the pink page
+func (m *Repository) Pink(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "pink.page.tmpl", &models.TemplateData{})
+}
+
+// Gray is the gray page handler render the gray page
+func (m *Repository) Gray(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "gray.page.tmpl", &models.TemplateData{})
+}
+
+//Availabilitty is the search-availabilitty page handler render the search-availabilitty page
+func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
 }
