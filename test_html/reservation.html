@@ -11,15 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css">
-    <style>
-        .my-footer {
-            height: 5em;
-            background-color: rgb(3, 2, 10);
-            margin-top: 1em;
-            padding: 1em;
-            color: rgb(111, 109, 197);
-        }
-    </style>
+    <link rel="stylesheet" href="statics/css/styles.css">
     <title>Hello, world!</title>
 </head>
 
@@ -73,14 +65,14 @@
             <div class="col-md-6">
                 <h1 class="text-center mt-4 mb-4">Hello welcome to GolfGrab reservation Page</h1>
                 <h2 class="text-center mt-5 mb-4">Search for Availability</h2>
-                <form action="reservation.html" method="get" novalidate class="needs-validation">
+                <form action="reservation.html" method="get" novalidate class="needs-validation" autocomplete="off">
 
 
                     <div class="row">
                         <div class="col">
                             <div class="row" id="reservation-dates">
                                 <div class="col">
-                                    <input required class="form-control" type="text" name="start" placeholder="Arrival">
+                                    <input required class="form-control" type="text" name="start" placeholder="Arrival" >
                                 </div>
                                 <div class="col">
                                     <input required class="form-control" type="text" name="end" placeholder="Departure">
@@ -183,11 +175,30 @@
         })
 
         document.getElementById("colorButton").addEventListener("click", function () {
-            // alertTemplate("Congrate!","You Are GAY","success","🍇🍇🍇")
-            attention.alertPopup("Test","texttexttext","confirm","error")
+            let html = `
+<form id="check-availability-form" action="" method="post" novalidate class="needs-validation" autocomplete="off">
+    <div class="row mx-3">
+        <div class="col">
+            <div class="row" id="reservation-dates-modal">
+                    <div class="col">
+                        <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
+                    </div>
+
+                    <div class="col">
+                        <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+`
+
+            attention.customFunc(title = "Choos your date", msg = html)
         })
         const elem = document.getElementById('reservation-dates');
         const rangepicker = new DateRangePicker(elem, {
+
             format: "yyyy-mm-dd",
             daysOfWeekHighlighted: [0, 6],
             todayHighlight: true,
@@ -231,10 +242,10 @@
         }
 
         function Prompt() {
-            let toast = function (title="",icon="success",position="top-end") {
-                icon = (typeof icon !== 'undefined') ?  icon : "success"
-                title = (typeof title !== 'undefined') ?  title : ""
-                position = (typeof position !== 'undefined') ?  position : "top-end"
+            let toast = function (title = "", icon = "success", position = "top-end") {
+                icon = (typeof icon !== 'undefined') ? icon : "success"
+                title = (typeof title !== 'undefined') ? title : ""
+                position = (typeof position !== 'undefined') ? position : "top-end"
 
                 const Toast = Swal.mixin({
                     toast: true,
@@ -254,27 +265,64 @@
                 })
             }
 
-            
-
-            let alertPopup = function(title, text, confirmButtonText, icon) {
-                icon = (typeof icon !== 'undefined') ?  icon : "success"
-                title = (typeof title !== 'undefined') ?  title : ""
-                text = (typeof text !== 'undefined') ?  text : ""
-                confirmButtonText = (typeof confirmButtonText !== 'undefined') ?  confirmButtonText : "Confirm"
 
 
-            Swal.fire({
-                title: title,
-                text: text,
-                icon: icon,
-                confirmButtonText: confirmButtonText
-            })
-        
-        }
+            let alertPopup = function (title, text, confirmButtonText, icon) {
+                icon = (typeof icon !== 'undefined') ? icon : "success"
+                title = (typeof title !== 'undefined') ? title : ""
+                text = (typeof text !== 'undefined') ? text : ""
+                confirmButtonText = (typeof confirmButtonText !== 'undefined') ? confirmButtonText : "Confirm"
+
+
+                Swal.fire({
+                    title: title,
+                    text: text,
+                    icon: icon,
+                    confirmButtonText: confirmButtonText
+                })
+
+            }
+
+            let customFunc = async function (title, msg) {
+                title = (typeof title !== 'undefined') ? title : ""
+                msg = (typeof msg !== 'undefined') ? msg : ""
+
+                const { value: formValues } = await Swal.fire({
+                    title: title,
+                    html: msg,
+                    backdrop: false,
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    willOpen: () =>{
+                        const elem = document.getElementById('reservation-dates-modal')
+                        const rp = new DateRangePicker(elem,{
+                            format:"yyyy-mm-dd",
+                            showOnFocus : true,
+                        })
+                    },
+                    preConfirm: () => {
+                        return [
+                            document.getElementById('start').value,
+                            document.getElementById('end').value
+                        ]
+                    },
+                    didOpen :() =>{
+                        return [
+                            document.getElementById('start').removeAttribute('disabled'),
+                            document.getElementById('end').removeAttribute('disabled')
+                        ]
+                    }
+                })
+
+                if (formValues) {
+                    Swal.fire(JSON.stringify(formValues))
+                }
+            }
 
             return {
-                toast: toast,
-                alertPopup: alertPopup
+                toast,
+                alertPopup,
+                customFunc
             }
         }
     </script>
