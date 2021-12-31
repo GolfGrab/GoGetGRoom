@@ -1,5 +1,78 @@
 {{template "base" .}}
 
 {{define "content"}}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1 class="text-center mt-4 mb-4">Hello welcome to GolfGrab reservation Page</h1>
+            <h2 class="text-center mt-5 mb-4">Search for Availability</h2>
+            <form action="reservation.html" method="get" novalidate class="needs-validation" autocomplete="off">
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row" id="reservation-dates">
+                            <div class="col">
+                                <input required class="form-control" type="text" name="start" placeholder="Arrival" >
+                            </div>
+                            <div class="col">
+                                <input required class="form-control" type="text" name="end" placeholder="Departure">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary">Search Availability</button>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p id="myParagraph">This is my paragraph</p>
+            <p>
+                <button id="colorButton" class="btn btn-outline-secondary">Click Me</button>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <p>This is some text This is some text This is some text This is
+                some textThis is some textThis is some textThis is some textThis is some textThis is some
+                textThis
+                is some textThis is some textThis is some textThis is some text This is some text This is some
+                text This is some text This is some text This is some text This is
+                some textThis is some textThis is some textThis is some textThis is some textThis is some
+                textThis
+                is some textThis is some textThis is some textThis is some textThis is some text This is some
+                text This is some text This is some text This is some text This is
+                some textThis is some textThis is some textThis is some textThis is some textThis is some
+                textThis
+                is some textThis is some textThis is some textThis is some textThis is some text This is some
+                text This is some text This is some text This is some text This is
+                some textThis is some textThis is some textThis is some textThis is some textThis is some
+                textThis
+                is some textThis is some textThis is some textThis is some text</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <p>This is some text This is some text This is some text This is some text This is some text This is
+                some textThis is some textThis is some textThis is some textThis is some text</p>
+        </div>
+        <div class="col text-center">
+            <p>This is some text This is some text This is some text This is some text This is some text</p>
+        </div>
+    </div>
+</div>
 {{end}}
 
