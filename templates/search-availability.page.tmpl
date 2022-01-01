@@ -8,8 +8,8 @@
         <div class="col-md-6">
             <h1 class="text-center mt-4 mb-4">Hello welcome to GolfGrab reservation Page</h1>
             <h2 class="text-center mt-5 mb-4">Search for Availability</h2>
-            <form action="reservation.html" method="get" novalidate class="needs-validation" autocomplete="off">
-
+            <form action="/search-availability" method="post" novalidate class="needs-validation" autocomplete="off">
+                <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
 
                 <div class="row">
                     <div class="col">

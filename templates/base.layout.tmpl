@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/check-availability">Book Now !!! 😁</a>
+                        <a class="nav-link" href="/search-availability">Book Now !!! 😁</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
@@ -147,22 +147,20 @@
 
             }
 
-            let customFunc = async function (title, msg) {
+            let customFunc = async function (title, msg, willOpen, didOpen, callback) {
                 title = (typeof title !== 'undefined') ? title : ""
                 msg = (typeof msg !== 'undefined') ? msg : ""
 
-                const { value: formValues } = await Swal.fire({
+                const { value: result } = await Swal.fire({
                     title: title,
                     html: msg,
                     backdrop: false,
                     focusConfirm: false,
                     showCancelButton: true,
                     willOpen: () => {
-                        const elem = document.getElementById('reservation-dates-modal')
-                        const rp = new DateRangePicker(elem, {
-                            format: "yyyy-mm-dd",
-                            showOnFocus: true,
-                        })
+                        if (willOpen !== undefined) {
+                            willOpen()
+                        }
                     },
                     preConfirm: () => {
                         return [
@@ -171,15 +169,23 @@
                         ]
                     },
                     didOpen: () => {
-                        return [
-                            document.getElementById('start').removeAttribute('disabled'),
-                            document.getElementById('end').removeAttribute('disabled')
-                        ]
-                    }
+                        if (didOpen !== undefined) {
+                            didOpen()
+                        }
+                    },
                 })
 
-                if (formValues) {
-                    Swal.fire(JSON.stringify(formValues))
+                if (result.dissmissed !== Swal.DismissReason.cancel) {
+                    if (result.value !== "") {
+                        if (callback !== undefined) {
+                            callback(result[0] + " ,,,  " + result[1])
+                        }
+                    } else {
+                        callback(false)
+                    }
+
+                } else {
+                    callback(false)
                 }
             }
 
