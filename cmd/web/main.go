@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/GolfGrab/GoGetGRoom/pkg/config"
-	"github.com/GolfGrab/GoGetGRoom/pkg/handlers"
-	"github.com/GolfGrab/GoGetGRoom/pkg/render"
+	"github.com/GolfGrab/GoGetGRoom/internal/config"
+	"github.com/GolfGrab/GoGetGRoom/internal/handlers"
+	"github.com/GolfGrab/GoGetGRoom/internal/render"
 	"github.com/alexedwards/scs/v2"
 )
 

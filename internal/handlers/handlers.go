@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/GolfGrab/GoGetGRoom/pkg/config"
-	"github.com/GolfGrab/GoGetGRoom/pkg/models"
-	"github.com/GolfGrab/GoGetGRoom/pkg/render"
+	"github.com/GolfGrab/GoGetGRoom/internal/config"
+	"github.com/GolfGrab/GoGetGRoom/internal/models"
+	"github.com/GolfGrab/GoGetGRoom/internal/render"
 )
 
 //Repo is the repository for the handlers
